@@ -1,0 +1,50 @@
+@use "colors";
+@use "sizes";
+
+@mixin button-reset {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@mixin link-reset {
+  text-decoration: none;
+}
+
+@mixin button {
+  background-color: white;
+  padding: .3rem;
+  border-radius: .2rem;
+  &:hover {
+    background-color: darken(white, 10%);
+  }
+}
+
+@mixin call-to-action {
+  background-color: white;
+  color: black;
+  border-radius: sizes.$border-radius;
+  display: inline-block;
+  font-size: 1.4rem;
+  text-decoration: none;
+  margin: 16px 0;
+  padding: 24px 64px;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: desaturate(colors.$alt-color, 30%);
+  }
+}
+
+@mixin call-to-action-secondary {
+  @include call-to-action;
+  background-color: colors.$bg-color;
+  color: colors.$fg-color;
+  padding: 24px 32px;
+  margin-left: 8px;
+
+  &:hover {
+    background-color: colors.$bg-color-alt;
+  }
+}

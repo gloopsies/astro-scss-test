@@ -1,0 +1,151 @@
+---
+enum ListItemType {
+    Link,
+    Spacer
+}
+
+interface NavLink {
+    type: ListItemType
+    icon?: string,
+    link?: string,
+    text?: string
+}
+
+let links:NavLink[] = [
+    {
+        type: ListItemType.Link,
+        icon: "/icons/home.svg",
+        link: "/",
+        text: "Home"
+    },
+    {
+        type: ListItemType.Link,
+        icon: "/icons/account.svg",
+        link: "/account",
+        text: "Account" 
+    },
+    {
+        type: ListItemType.Link,
+        icon: "/icons/explore.svg",
+        link: "/explore",
+        text: "Explore"
+    },
+    {
+        type: ListItemType.Link,
+        icon: "/icons/leaderboard.svg",
+        link: "/donations",
+        text: "Donations"
+    },
+    {
+        type: ListItemType.Link,
+        icon: "/icons/network.svg",
+        link: "/switch-network",
+        text: "Switch network"
+    },
+    {
+        type: ListItemType.Spacer,
+    },
+    {
+        type: ListItemType.Link,
+        icon: "/icons/login.svg",
+        link: "/log-in",
+        text: "Log in"
+    }
+]
+---
+
+<nav>
+    <ul>
+    {
+        links.map(({type, icon, link, text}) =>
+            (type == ListItemType.Spacer)?
+            <li class="spacer"></li> :
+            <li>
+                <a href={link}>
+                    <img alt={text} src={icon}>
+                    {text}
+                </a>
+            </li>
+        )
+    }
+    </ul>
+</nav>
+
+<style lang="scss">
+  @use "../scss" as imports;
+  
+  nav {
+    position: fixed;
+    background-color: imports.$bg-color-alt;
+    padding: 16px 0;
+    width: imports.$sidebar-closed-width;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 100%;
+    z-index: 10;
+    transition: width ease-in .2s;
+
+    &:hover {
+      width: imports.$sidebar-opened-width;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    li {
+      list-style: none;
+      font-size: 1.4rem;
+
+      &.spacer {
+        flex-grow: 1;
+      }
+
+      &:not(.spacer):hover {
+        background-color: imports.$bg-color;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        color: imports.$fg-color;
+        padding: 16px;
+        text-decoration: none;
+      }
+    }
+
+    &::before {
+      content: '';
+      background-color: black;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s ease-in-out;
+    }
+
+    &:hover::before {
+      opacity: .4;
+    }
+
+    &::after {
+      content: '';
+      background-color: inherit;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: inherit;
+      pointer-events: none;
+    }
+  }
+
+  img {
+    display: inline;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+  }
+</style>

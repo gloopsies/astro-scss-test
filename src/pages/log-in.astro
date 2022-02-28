@@ -1,0 +1,39 @@
+---
+	import Boilerplate from "@layouts/Boilerplate.astro";
+---
+
+<Boilerplate>
+    <title slot="head">Log in</title>
+
+    <div class="wrapper">
+        <form>
+            <h1>Log in</h1>
+            <label for="username">Username: </label>
+            <input type="text" id="username">
+            <label for="password">Password: </label>
+            <input type="password" id="password">
+        </form>
+    </div>
+</Boilerplate>
+
+<style lang="scss">
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 700px;
+        width: 100%;
+    }
+
+    label {
+        font-size: 1.5em;
+    }
+
+    input {
+        border-bottom: white .1em solid;
+    }
+
+    .wrapper {
+        display: grid;
+        place-content: center;
+    }
+</style>

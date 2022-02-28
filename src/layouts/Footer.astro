@@ -1,0 +1,63 @@
+---
+    import { Markdown } from "astro/components";
+---
+
+<footer>
+    <div>
+        <Markdown>
+            ## About
+
+            Hakaton
+        </Markdown>
+    </div>
+    <div>
+        <Markdown>
+            ## Sitemap
+
+            - [Home](/)
+            - [Explore](/)
+            - [Contact us](/)
+        </Markdown>
+    </div>
+    <div>
+        <p>This website is released to public under the MIT licence</p>
+    </div>
+</footer>
+
+<style lang="scss">
+  footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    background-color: black;
+    color: white;
+    line-height: 1.1;
+    h1, p {
+      color: white;
+    }
+    ul {
+      color: white;
+      list-style: none;
+    }
+    a {
+      color: white;
+      text-decoration: underline;
+
+      &:hover {
+        color: darken(white, 20%);
+      }
+    }
+    div:last-child {
+      grid-column: 1 / 3;
+    }
+  }
+  @media (max-width: 1000px) {
+    footer {
+      grid-template-columns: 1fr;
+      div:last-child {
+        grid-column: 1 / 2;
+      }
+    }
+  }
+</style>

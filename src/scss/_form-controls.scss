@@ -1,0 +1,100 @@
+@use "colors";
+
+@mixin custom-checkbox {
+  [type="checkbox"] {
+    display: none;
+    opacity: 0;
+
+    + .checkbox {
+      width: 0;
+      height: 0;
+      margin: .5em;
+      position: relative;
+      cursor: pointer;
+
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        inset: -.5em;
+        border-radius: 2px;
+      }
+
+      &:before {
+        background-color: colors.$alt-color;
+      }
+
+      &:after {
+        opacity: 1;
+        background-color: colors.$bg-color;
+        position: absolute;
+        margin: 2px;
+      }
+    }
+
+    &:checked + .checkbox:after {
+      opacity: 0;
+    }
+
+    &:hover + .checkbox:after {
+      opacity: .8;
+    }
+
+    &:checked:hover + .checkbox:after {
+      opacity: .4;
+    }
+  }
+}
+
+%input-reset {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+%input-default {
+  @extend %input-reset;
+  background-color: white;
+  color: black;
+  padding: .4rem;
+  border-radius: 4px;
+}
+
+@mixin select {
+  select {
+    @extend %input-default;
+
+    &:is(:hover, :focus) {
+      background-color: darken(white, 10%);
+    }
+
+    option {
+      background-color: colors.$bg-color;
+      color: colors.$fg-color;
+      padding: .2rem;
+    }
+  }
+}
+
+@mixin input-text-reset {
+  input[type="text"] {
+    @extend %input-reset;
+  }
+}
+
+@mixin textarea {
+  textarea {
+    @extend %input-default;
+  }
+}
+
+@mixin input-text {
+  input[type="text"] {
+    @extend %input-default;
+  }
+}
+
+@mixin input-date {
+  input[type="date"] {
+    @extend %input-default;
+  }
+}

@@ -1,0 +1,57 @@
+---
+import Navigation from "./Navigation.astro";
+import Footer from "./Footer.astro";
+import "../styles/reset.css"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=League+Spartan&family=Raleway:wght@700&display=swap" rel="stylesheet">
+
+		<slot name="head"/>
+	</head>
+	<body>
+		<Navigation />
+		<div class="wrapper">
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</div>
+	</body>
+</html>
+
+<style lang="scss">
+	@import "../scss";
+
+	main {
+		padding: 16px;
+		min-height: 100vh;
+	}
+
+	body {
+		background: $bg-color;
+		color: $fg-color;
+	}
+
+	.wrapper {
+		margin-left: $sidebar-closed-width;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		width: calc(100% - $sidebar-closed-width);
+	}
+
+	:global(a) {
+		color: red;
+	}
+</style>
